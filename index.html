@@ -1,0 +1,255 @@
+<html>
+    <head>
+        <title> JavaScript DOM Course</title>
+     
+    </head>
+    <body>
+        <style>
+            .red{
+                background-color: whitesmoke;
+                color:red;
+                text-decoration: line-through;
+            }
+            .test{
+                margin: 10px;
+                padding: 10px;
+                boarder: 1px solid black;
+            }
+        </style>
+        <h1>Lorem ipsum dolor sit amet consectetuer adipiscing 
+            elit</h1>
+
+            <ul>
+                <li id="one">Lorem ipsum dolor sit amet, consectetuer adipiscing 
+                elit. Aenean commodo ligula eget dolor. Aenean 
+                massa.</li>
+                <li class="highlight">Cum sociis natoque penatibus et magnis dis 
+                parturient montes, nascetur ridiculus mus. Donec quam 
+                felis, ultricies nec, pellentesque eu, pretium quis, 
+                sem.</li>
+                <li>Nulla consequat massa quis enim. Donec pede justo, 
+                fringilla vel, aliquet nec, vulputate eget, arcu.</li>
+                <li>In enim justo, rhoncus ut, imperdiet a, venenatis 
+                vitae, justo. Nullam dictum felis eu pede mollis 
+                pretium. Integer tincidunt.</li>
+              </ul>
+              <h2>Aenean commodo ligula eget dolor aenean massa</h2>
+
+              <p class="highlight">Lorem ipsum dolor sit amet, consectetuer adipiscing 
+                elit. Aenean commodo ligula eget dolor. Aenean massa 
+                <strong>strong</strong>. Cum sociis natoque penatibus 
+                et magnis dis parturient montes, nascetur ridiculus 
+                mus. Donec quam felis, ultricies nec, pellentesque 
+                eu, pretium quis, sem. Nulla consequat massa quis 
+                enim. Donec pede justo, fringilla vel, aliquet nec, 
+                vulputate eget, arcu. In enim justo, rhoncus ut, 
+                imperdiet a, venenatis vitae, justo. Nullam dictum 
+                felis eu pede <a class="external ext" href="#">link</a> 
+                mollis pretium. Integer tincidunt. Cras dapibus. 
+                Vivamus elementum semper nisi. Aenean vulputate 
+                eleifend tellus. Aenean leo ligula, porttitor eu, 
+                consequat vitae, eleifend ac, enim. Aliquam lorem ante, 
+                dapibus in, viverra quis, feugiat a, tellus. Phasellus 
+                viverra nulla ut metus varius laoreet. Quisque rutrum. 
+                Aenean imperdiet. Etiam ultricies nisi vel augue. 
+                Curabitur ullamcorper ultricies nisi.</p>
+  
+    <a href="https://placeholder.com"><img src="https://via.placeholder.com/250/00ffff/000000"></a>
+    <br>
+    <img src="https://via.placeholder.com/350x150/00ff00/ffffff">
+     <br>
+     <br>
+    <input type="text" name="newItem"></input>
+    <!-- <div id="clicker">Click Me</div> -->
+
+    </body>
+    
+   <!-- Manipulating DOM elements  -->
+    <script>
+        var el1 = document.querySelector('h1');
+        console.log(el1.innerHTML);
+        //If we can grab an element, we can update it 
+        el1.innerHTML = "Hello World";
+        // el1.style.color = 'red';
+        // el1.style.background = 'blue';
+
+        var el2 = document.querySelector('#one');
+        console.log(el2.innerHTML);
+        //If we can grab an element, we can update it 
+        el2.innerHTML = "My id was one";
+        el2.style.color = 'green';
+        el2.style.background = 'black';
+    </script>
+
+     <!-- Selecting elements from the DOM
+    Can be done with the tag/id/class -->
+    <script>
+        var el1 = document.getElementById('one');
+        el1.style.background="yellow";
+
+      //This looks like an array but its a 'node list' of the different objects
+      //Get them using el2[0], el2[1] and so on  
+        var el2 = document.getElementsByTagName('li');
+        console.log(el2);
+
+        //Also outputs a node list
+        var el3 = document.getElementsByClassName('hightlight');
+        console.log(el3);
+
+        // selcting based on a css style selector
+        // # = id, . - class 
+
+        // querySelector returns the first one
+        var el4 = document.querySelector('.highlight');
+        console.log(el4);
+
+        // querySelector all returns a node list of all the matching elements
+        var el5 = document.querySelectorAll('.highlight');
+        console.log(el5);
+    </script>
+
+
+<!--Selecting and updating text-->
+    <script>
+        var el1 = document.querySelector('.highlight');
+        console.log(el1);
+        //Tells you whats available in the object
+        console.dir(el1);
+       //Only accepts text
+        el1.textContent = "hi";
+        //Accepts HTML code 
+        el1.innerHTML = 'hello <br> world'; 
+        el1.innerHTML = 'hello'; 
+        el1.textContent = "hi";
+        console.dir(el1)
+    </script>
+<!-- Updateing class names and so one using js -->
+    <script>
+        var el1 = document.querySelector('p')
+        console.dir(el1);
+        //Will update the class, i.e. if it has another class, will remove the original one
+        el1.className = "red";
+        // Use classList to append. 
+        el1.classList.add('test')
+    </script>
+
+    <script>
+        //Css takes on where you apply it last. 
+        var el1 = document.getElementsByClassName('test');
+        console.log(el1[0]);
+        var tempEle = el1[0];
+        tempEle.style.backgroundColor = "Purple";
+        tempEle.style.color = "black";
+        tempEle.style.border = "5px dotted white";
+    </script>
+
+    <!--Update element attributes -->
+    <script>
+        var el1 = document.getElementsByTagName('a');
+        console.log(el1[0]);
+        var el2 = document.getElementsByTagName('img');
+        console.log(el2[1])
+        // Grab and set a specific attribute
+        var temp = el1[0].getAttribute('href');
+        el1[0].setAttribute('href','http://www.google.com');
+
+        //Swapping the image placements 
+        var tempImg1 = el1[0].getAttribute('src');
+        var tempImg2 = el2[1].getAttribute('src');
+        el1[0].setAttribute('src', tempImg1);
+        el2[1].setAttribute('src', tempImg2) ;
+    </script>
+
+    <!--Events -->
+    <script>
+        // var ele1 = document.querySelector('ul');
+        // ele1.addEventListener('click', function(){
+        //     console.log('click');
+        //     ele1.style.backgroundColor="orange";
+        // })
+
+        // var eleList = document.querySelectorAll('li');
+        // for(var x=0; x<eleList.length;x++){
+        //     eleList[x].addEventListener('click',makeItRed)
+        // }
+
+        function makeItRed(){
+            console.log(this);
+            // var temp = this.classList.toggle('red');
+            this.classList.toggle('red');
+            // console.log(temp);
+        }
+
+        var ele = document.querySelector('input[name = "newItem"]');
+        ele.addEventListener('keypress',addItem);
+        var eleUL = document.querySelector('ul');
+
+        function addItem(event){
+            console.log('add item')
+            if(event.keyCode === 13){
+                console.log('you pressed enters');
+                eleUL.style.backgroundColor = "yellow";
+            }
+        }
+    </script>
+
+    <!--Mouse Events-->
+    <script>
+        var eleList = document.getElementsByTagName('li');
+        console.log('hi')
+        for(var x=0;x<eleList.length;x++){
+            console.log(eleList[x]);
+            eleList[x].addEventListener('mouseover', function(){
+                this.classList.add('red');
+            });
+            eleList[x].addEventListener('mouseout',function(){
+                this.classList.remove('red');
+            })
+        }   
+    </script>
+    <script>
+        var inputSelect = document.querySelector('input[name="newItem"]');
+        inputSelect.addEventListener('keypress',function(event){
+            if(event.keyCode === 13)
+            console.log(event.keyCode);
+            makeNew();
+        })
+
+
+        var mainList = document.querySelector('ul')
+        var clicker = document.getElementById('clicker');
+        var allListItems = document.querySelectorAll('li')
+        for(var x=0; x<allListItems.length;x++){
+            allListItems[x].addEventListener('click',myList);
+        }
+        function myList(){
+            console.log('click');
+            console.log(this.tester)
+            this.newWorld = "Hii";
+            this.classList.toggle('red');
+            if(temp){
+                var span = document.createElement('span');
+                span.textContent = 'x';
+                span.addEventListener('click',function(){
+                    this.parentElement.remove();
+                })
+                this.appendChild(span);
+            } else{
+                this.getElementsByTagName('span')[0].remove();
+            }
+
+        }
+
+         function makeNew(){
+            var li = document.createElement('li');
+            li.addEventListener('click',myList);
+            li.tester = "hello world";
+
+            var textValue = inputSelect.value;
+            var tempNode = document.createTextNode(textValue);
+            // mainList.appendChild(li);
+            li.appendChild(tempNode);
+            mainList.appendChild(li);
+        }
+    </script>
+</html>
